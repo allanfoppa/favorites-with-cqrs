@@ -1,0 +1,5 @@
+FAVORITES:
+    - Create a new link (Today add-favorite.command.ts creates a new link. Need to rename the correct pattern)
+    - List all register links
+    - Add favorite
+    - Remove favorite
