@@ -1,4 +1,4 @@
-import { Command } from "@nestjs/cqrs/dist/classes/command";
+import { Command } from "@nestjs/cqrs";
 
 export class CreateFavoriteCommand extends Command<{
   title: string;

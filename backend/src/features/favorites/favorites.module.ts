@@ -9,8 +9,10 @@ import { Favorite } from './favorites.entity';
 import { FavoriteSchema } from './favorites.schema';
 
 import { CreateFavoriteHandler } from './commands/create-favorite.handler';
-import { ListFavoritesHandler } from './queries/list-favorites.handler';
 import { FavoriteCreatedHandler } from './events/favorite-created.handler';
+import { UpdateFavoriteHandler } from './commands/update-favorite.handler';
+import { FavoriteUpdatedHandler } from './events/favorite-updated.handler';
+import { ListFavoritesHandler } from './queries/list-favorites.handler';
 
 @Module({
   imports: [
@@ -23,8 +25,10 @@ import { FavoriteCreatedHandler } from './events/favorite-created.handler';
   controllers: [FavoritesController],
   providers: [
     CreateFavoriteHandler,
+    UpdateFavoriteHandler,
     ListFavoritesHandler,
-    FavoriteCreatedHandler
+    FavoriteCreatedHandler,
+    FavoriteUpdatedHandler
   ],
 })
 export class FavoritesModule {}

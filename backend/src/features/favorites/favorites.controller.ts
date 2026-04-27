@@ -1,8 +1,8 @@
-
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
 import { CreateFavoriteCommand } from './commands/create-favorite.command';
+import { UpdateFavoriteCommand } from './commands/update-favorite.command';
 
 import { ListFavoritesQuery } from './queries/list-favorites.query';
 
@@ -18,5 +18,11 @@ export class FavoritesController {
   @Get('list')
   getAll() {
     return this.queryBus.execute(new ListFavoritesQuery());
+  }
+
+  @Patch('patch')
+  update(@Body() body: any) {
+    console.log('🔄 UPDATE REQUEST', body);
+    return this.commandBus.execute(new UpdateFavoriteCommand(body.id, body.title, body.url, body.isFavorite));
   }
 }
