@@ -1,19 +1,19 @@
 
 import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
-import { AddFavoriteCommand } from './add-favorite.command';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateFavoriteCommand } from './create-favorite.command';
 import { Favorite } from '../favorites.entity';
 import { FavoriteCreatedEvent } from '../events/favorite-created.event';
 
-@CommandHandler(AddFavoriteCommand)
-export class AddFavoriteHandler implements ICommandHandler<AddFavoriteCommand> {
+@CommandHandler(CreateFavoriteCommand)
+export class CreateFavoriteHandler implements ICommandHandler<CreateFavoriteCommand> {
   constructor(
     @InjectRepository(Favorite, 'write') private repository: Repository<Favorite>,
     private eventBus: EventBus
   ) {}
 
-  async execute(command: AddFavoriteCommand) {
+  async execute(command: CreateFavoriteCommand) {
     const { title, url } = command;
 
     const fav = this.repository.create({

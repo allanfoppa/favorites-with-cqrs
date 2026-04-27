@@ -1,11 +1,11 @@
 
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetFavoritesQuery } from './get-favorites.query';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ListFavoritesQuery } from './list-favorites.query';
 
-@QueryHandler(GetFavoritesQuery)
-export class GetFavoritesHandler implements IQueryHandler<GetFavoritesQuery> {
+@QueryHandler(ListFavoritesQuery)
+export class ListFavoritesHandler implements IQueryHandler<ListFavoritesQuery> {
 constructor(
   @InjectModel('Favorite')
   private model: Model<any>,

@@ -1,14 +1,15 @@
-
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { FavoritesController } from './favorites.controller';
+
 import { Favorite } from './favorites.entity';
 import { FavoriteSchema } from './favorites.schema';
 
-import { AddFavoriteHandler } from './commands/add-favorite.handler';
-import { GetFavoritesHandler } from './queries/get-favorites.handler';
-import { MongooseModule } from '@nestjs/mongoose';
+import { CreateFavoriteHandler } from './commands/create-favorite.handler';
+import { ListFavoritesHandler } from './queries/list-favorites.handler';
 import { FavoriteCreatedHandler } from './events/favorite-created.handler';
 
 @Module({
@@ -21,8 +22,8 @@ import { FavoriteCreatedHandler } from './events/favorite-created.handler';
   ],
   controllers: [FavoritesController],
   providers: [
-    AddFavoriteHandler,
-    GetFavoritesHandler,
+    CreateFavoriteHandler,
+    ListFavoritesHandler,
     FavoriteCreatedHandler
   ],
 })

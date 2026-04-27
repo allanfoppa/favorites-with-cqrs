@@ -1,4 +1,6 @@
-export class FavoriteCreatedEvent {
+import { IEvent } from "@nestjs/cqrs";
+
+export class FavoriteCreatedEvent implements IEvent {
   constructor(
     public readonly id: number,
     public readonly title: string,

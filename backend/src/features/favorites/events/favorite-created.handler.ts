@@ -13,16 +13,16 @@ export class FavoriteCreatedHandler implements IEventHandler<FavoriteCreatedEven
   async handle(event: FavoriteCreatedEvent) {
     console.log('🔥 EVENT RECEIVED', event);
     try {
-        const result = await this.favoriteModel.create({
-            id: event.id,
-            title: event.title,
-            url: event.url,
-            createdAt: event.createdAt,
-        });
+      const result = await this.favoriteModel.create({
+        id: event.id,
+        title: event.title,
+        url: event.url,
+        createdAt: event.createdAt,
+      });
 
-        console.log('✅ MONGO INSERT OK', result);
+      console.log('✅ MONGO INSERT OK', result);
     } catch (err) {
-        console.error('❌ MONGO ERROR', err);
+      console.error('❌ MONGO ERROR', err);
     }
   }
 }

@@ -3,8 +3,8 @@
 
 | Type | Pattern | Example |
 | :--- | :--- | :--- |
-| **Command** | `[action]-[entity].command.ts` | `add-favorite.command.ts` |
-| **Command Handler** | `[action]-[entity].command-handler.ts` | `add-favorite.command-handler.ts` |
+| **Command** | `[action]-[entity].command.ts` | `create-favorite.command.ts` |
+| **Command Handler** | `[action]-[entity].command-handler.ts` | `create-favorite.command-handler.ts` |
 | **Query** | `[action]-[entity].query.ts` | `list-favorites.query.ts` |
 | **Query Handler** | `[action]-[entity].query-handler.ts` | `list-favorites.query-handler.ts` |
 | **Event** | `[entity]-[fact].event.ts` | `favorite-created.event.ts` |

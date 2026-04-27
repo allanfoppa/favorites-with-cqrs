@@ -7,8 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    CqrsModule,
-    FavoritesModule,
+    CqrsModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -25,6 +24,7 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot(
       String(process.env.MONGO_URL),
     ),
+    FavoritesModule
   ],
 })
 export class AppModule {}
