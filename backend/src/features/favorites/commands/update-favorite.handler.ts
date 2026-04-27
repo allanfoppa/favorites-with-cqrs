@@ -1,6 +1,6 @@
 import { CommandHandler, EventBus, ICommandHandler } from "@nestjs/cqrs";
 import { UpdateFavoriteCommand } from "./update-favorite.command";
-import { Favorite } from "../favorites.entity";
+import { Favorite } from "../entities/favorites.entity";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { FavoriteUpdatedEvent } from "../events/favorite-updated.event";

@@ -3,7 +3,7 @@ import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateFavoriteCommand } from './create-favorite.command';
-import { Favorite } from '../favorites.entity';
+import { Favorite } from '../entities/favorites.entity';
 import { FavoriteCreatedEvent } from '../events/favorite-created.event';
 
 @CommandHandler(CreateFavoriteCommand)

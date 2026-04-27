@@ -5,8 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { FavoritesController } from './favorites.controller';
 
-import { Favorite } from './favorites.entity';
-import { FavoriteSchema } from './favorites.schema';
+import { Favorite } from './entities/favorites.entity';
+import { FavoriteSchema } from './schemas/favorites.schema';
 
 import { CreateFavoriteHandler } from './commands/create-favorite.handler';
 import { FavoriteCreatedHandler } from './events/favorite-created.handler';
