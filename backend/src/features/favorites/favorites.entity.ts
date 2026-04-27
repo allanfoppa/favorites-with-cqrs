@@ -11,6 +11,9 @@ export class Favorite {
   @Column('text')
   url!: string;
 
+  @Column('boolean', { default: false })
+  isFavorite!: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   @Index()
   createdAt!: Date;

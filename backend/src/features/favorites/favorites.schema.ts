@@ -5,6 +5,7 @@ export const FavoriteSchema = new Schema(
     id: Number,
     title: String,
     url: String,
+    isFavorite: Boolean,
     createdAt: Date,
   },
   { collection: 'favorites' }
