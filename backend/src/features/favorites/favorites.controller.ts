@@ -1,28 +1,36 @@
-import { Controller, Get, Post, Body, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Delete, Param } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 
-import { CreateFavoriteCommand } from './commands/create-favorite.command';
-import { UpdateFavoriteCommand } from './commands/update-favorite.command';
+import { CreateFavoriteCommand } from './application/commands/create-favorite.command';
+import { UpdateFavoriteCommand } from './application/commands/update-favorite.command';
+import { DeleteFavoriteCommand } from './application/commands/delete-favorite.command';
 
-import { ListFavoritesQuery } from './queries/list-favorites.query';
+import { ListFavoritesQuery } from './application/queries/list-favorites.query';
 
 @Controller('favorites')
 export class FavoritesController {
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
 
-  @Post('create')
+  @Post()
   add(@Body() body: any) {
+    console.log('🔄 CREATE REQUEST', body);
     return this.commandBus.execute(new CreateFavoriteCommand(body.title, body.url));
   }
 
-  @Get('list')
+  @Get()
   getAll() {
+    console.log('🔄 LIST REQUEST');
     return this.queryBus.execute(new ListFavoritesQuery());
   }
 
-  @Patch('patch')
-  update(@Body() body: any) {
-    console.log('🔄 UPDATE REQUEST', body);
-    return this.commandBus.execute(new UpdateFavoriteCommand(body.id, body.title, body.url, body.isFavorite));
+  @Patch(':id')
+  update(@Param('id') id: number, @Body() body: any) {
+    console.log('🔄 UPDATE REQUEST', id, body);
+    return this.commandBus.execute(new UpdateFavoriteCommand(Number(id), body.title, body.url, body.isFavorite));
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.commandBus.execute(new DeleteFavoriteCommand(Number(id)));
   }
 }
