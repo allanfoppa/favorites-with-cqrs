@@ -1,0 +1,16 @@
+<mat-card class="fav-card">
+  <div class="card-content">
+    <div class="icon-container">
+      <mat-icon>language</mat-icon>
+    </div>
+
+    <div class="details">
+      <h3>{{ data().title }}</h3>
+      <a [href]="data().url" target="_blank">{{ data().url }}</a>
+    </div>
+
+    <button mat-icon-button class="delete-btn" (click)="onDelete()">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </div>
+</mat-card>
