@@ -23,7 +23,6 @@ import { FavoriteUpdatedConsumer } from './infrastructure/messaging/consumers/fa
 import { FavoriteDeletedConsumer } from './infrastructure/messaging/consumers/favorite-deleted.consumer';
 import { OutboxWorker } from './infrastructure/messaging/workers/outbox.worker';
 
-
 @Module({
   imports: [
     CqrsModule,
@@ -33,9 +32,7 @@ import { OutboxWorker } from './infrastructure/messaging/workers/outbox.worker';
 
     TypeOrmModule.forFeature([Favorite, OutboxEvent], 'write'),
 
-    MongooseModule.forFeature([
-      { name: 'Favorite', schema: FavoriteSchema },
-    ]),
+    MongooseModule.forFeature([{ name: 'Favorite', schema: FavoriteSchema }]),
 
     ClientsModule.register([
       {

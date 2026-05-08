@@ -1,16 +1,21 @@
-<mat-card class="fav-card">
+<mat-card class="favorite-card">
   <div class="card-content">
-    <div class="icon-container">
-      <mat-icon>language</mat-icon>
+    <div class="left-content">
+      <div class="icon-wrapper">
+        <mat-icon>
+          {{ favorite().isFavorite ? 'star' : 'language' }}
+        </mat-icon>
+      </div>
+
+      <div class="info">
+        <h3>{{ favorite().title }}</h3>
+
+        <p>{{ favorite().url }}</p>
+      </div>
     </div>
 
-    <div class="details">
-      <h3>{{ data().title }}</h3>
-      <a [href]="data().url" target="_blank">{{ data().url }}</a>
-    </div>
-
-    <button mat-icon-button class="delete-btn" (click)="onDelete()">
-      <mat-icon>delete_outline</mat-icon>
+    <button mat-icon-button color="warn" (click)="onRemove()">
+      <mat-icon>delete</mat-icon>
     </button>
   </div>
 </mat-card>

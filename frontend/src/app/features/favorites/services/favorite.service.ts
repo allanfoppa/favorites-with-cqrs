@@ -6,7 +6,7 @@ import { Favorite, CreateFavoriteCommand } from '../models/favorite.model';
 @Injectable({ providedIn: 'root' })
 export class FavoriteService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = '/api/favorites'; // Use environment variable in production
+  private readonly apiUrl = 'http://localhost:3000/favorites'; // Use environment variable for best pratices
 
   /** Query: Fetch all favorites */
   async getFavorites(): Promise<Favorite[]> {

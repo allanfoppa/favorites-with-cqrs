@@ -1,0 +1,42 @@
+<section class="container">
+  <!-- SUMMARY -->
+
+  <div class="summary-grid">
+    <app-favorites-summary title="Total Favorites" [value]="store.totalCount()" icon="star" />
+    <app-favorites-summary
+      title="Active Favorites"
+      [value]="store.activeFavorites()"
+      icon="favorite"
+    />
+    <app-favorites-summary title="Unique Domains" [value]="store.uniqueDomains()" icon="link" />
+  </div>
+
+  <!-- SEARCH -->
+
+  <div class="search-wrapper">
+    <mat-icon>search</mat-icon>
+
+    <input
+      type="text"
+      placeholder="Buscar favoritos..."
+      [ngModel]="store.filterText()"
+      (ngModelChange)="onSearch($event)"
+    />
+  </div>
+
+  <!-- LOADING -->
+
+  @if (store.isLoading()) {
+    <div class="loading-wrapper">
+      <mat-spinner diameter="40" />
+    </div>
+  }
+
+  <!-- GRID -->
+
+  <div class="favorites-grid">
+    @for (favorite of store.filteredFavorites(); track favorite.id) {
+      <app-favorite-card [favorite]="favorite" (remove)="removeFavorite($event)" />
+    }
+  </div>
+</section>

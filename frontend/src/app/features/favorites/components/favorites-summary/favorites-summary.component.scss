@@ -1,0 +1,43 @@
+.summary-card {
+    padding: 16px;
+}
+
+.summary-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-wrapper {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #f1f3f4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 36px;
+    }
+}
+
+.content-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    span {
+        margin: 0;
+        font-size: 42px;
+    }
+}
+

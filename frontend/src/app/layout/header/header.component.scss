@@ -1,0 +1,26 @@
+.app-header {
+  display: grid;
+  grid-template-columns: auto max-content;
+  align-items: center;
+  max-width: 1280px;
+  margin: auto;
+  height: 88px;
+  padding-inline: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px !important;
+  background-color: #ffffff;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -1px rgb(0 0 0 / 6%) !important;
+}
+
+.add-button {
+  border-radius: 50% !important;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 10px rgb(0 0 0 / 15%);
+}

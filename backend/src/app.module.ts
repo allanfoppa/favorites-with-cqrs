@@ -19,12 +19,10 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '/**/*.entity{.ts,.js}']
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
     }),
-    MongooseModule.forRoot(
-      String(process.env.MONGO_URL),
-    ),
-    FavoritesModule
+    MongooseModule.forRoot(String(process.env.MONGO_URL)),
+    FavoritesModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Adicionar favorito</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Título</mat-label>
+
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>URL</mat-label>
+
+      <input matInput formControlName="url" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+
+  <button mat-flat-button (click)="submit()">Salvar</button>
+</mat-dialog-actions>
