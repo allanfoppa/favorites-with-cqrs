@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
+import { FavoritesFacade } from '../../facade/favorites.facade';
+
 @Component({
   selector: 'app-favorite-dialog',
   standalone: true,
@@ -25,6 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class FavoriteDialogComponent {
   private readonly fb = inject(FormBuilder);
 
+  private readonly facade = inject(FavoritesFacade);
+
   private readonly dialogRef = inject(MatDialogRef<FavoriteDialogComponent>);
 
   readonly form = this.fb.nonNullable.group({
@@ -32,9 +36,13 @@ export class FavoriteDialogComponent {
     url: ['', Validators.required],
   });
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.form.invalid) return;
 
-    this.dialogRef.close(this.form.getRawValue());
+    const { title, url } = this.form.getRawValue();
+
+    await this.facade.addLink(title, url);
+
+    this.dialogRef.close();
   }
 }

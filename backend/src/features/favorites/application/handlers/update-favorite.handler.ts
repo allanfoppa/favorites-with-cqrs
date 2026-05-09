@@ -8,22 +8,20 @@ import { OutboxEvent } from '../../infrastructure/persistence/postgres/entities/
 import { EVENTS } from '../../constants/favorites.constants';
 
 @CommandHandler(UpdateFavoriteCommand)
-export class UpdateFavoriteHandler
-  implements ICommandHandler<UpdateFavoriteCommand>
-{
+export class UpdateFavoriteHandler implements ICommandHandler<UpdateFavoriteCommand> {
   constructor(
     @InjectRepository(Favorite, 'write')
-    private repository: Repository<Favorite>
+    private repository: Repository<Favorite>,
   ) {}
 
   async execute(command: UpdateFavoriteCommand) {
     return this.repository.manager.transaction(async (manager) => {
-
       const updatePayload: any = {};
 
       if (command.title !== undefined) updatePayload.title = command.title;
       if (command.url !== undefined) updatePayload.url = command.url;
-      if (command.isFavorite !== undefined) updatePayload.isFavorite = command.isFavorite;
+      if (command.isFavorite !== undefined)
+        updatePayload.isFavorite = command.isFavorite;
 
       // 1. Update in Postgres
       await manager.update(Favorite, command.id, updatePayload);

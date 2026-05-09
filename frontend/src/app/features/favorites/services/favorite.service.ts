@@ -1,7 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Favorite, CreateFavoriteCommand } from '../models/favorite.model';
+import {
+  Favorite,
+  CreateFavoriteCommand,
+  DeleteFavoriteCommand,
+  UpdateFavoriteCommand,
+} from '../models/favorite.model';
 
 @Injectable({ providedIn: 'root' })
 export class FavoriteService {
@@ -18,8 +23,14 @@ export class FavoriteService {
     return lastValueFrom(this.http.post<Favorite>(this.apiUrl, command));
   }
 
+  /** Command: Update a favorite */
+  async update(command: UpdateFavoriteCommand): Promise<Favorite> {
+    const { id, isFavorite } = command;
+    return lastValueFrom(this.http.put<Favorite>(`${this.apiUrl}/${id}`, { isFavorite }));
+  }
+
   /** Command: Delete a favorite */
-  async delete(id: string): Promise<void> {
-    return lastValueFrom(this.http.delete<void>(`${this.apiUrl}/${id}`));
+  async delete(command: DeleteFavoriteCommand): Promise<void> {
+    return lastValueFrom(this.http.delete<void>(`${this.apiUrl}/${command.id}`));
   }
 }

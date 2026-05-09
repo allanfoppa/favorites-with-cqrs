@@ -19,3 +19,8 @@ export interface UpdateFavoriteCommand {
   url?: string;
   isFavorite?: boolean;
 }
+
+/** Command to delete a favorite */
+export interface DeleteFavoriteCommand {
+  id: string;
+}

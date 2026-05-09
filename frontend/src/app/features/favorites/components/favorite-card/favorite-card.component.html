@@ -2,11 +2,14 @@
   <div class="card-content">
     <div class="left-content">
       <div class="icon-wrapper">
-        <mat-icon>
-          {{ favorite().isFavorite ? 'star' : 'language' }}
+        <mat-icon
+          (mouseenter)="onMouseEnter()"
+          (mouseleave)="onMouseLeave()"
+          (click)="facade.toggleFavorite(favorite())"
+        >
+          {{ iconName }}
         </mat-icon>
       </div>
-
       <div class="info">
         <h3>{{ favorite().title }}</h3>
 
@@ -14,7 +17,7 @@
       </div>
     </div>
 
-    <button mat-icon-button color="warn" (click)="onRemove()">
+    <button mat-icon-button color="warn" (click)="facade.removeLink({ id: favorite().id })">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

@@ -36,7 +36,7 @@
 
   <div class="favorites-grid">
     @for (favorite of store.filteredFavorites(); track favorite.id) {
-      <app-favorite-card [favorite]="favorite" (remove)="removeFavorite($event)" />
+      <app-favorite-card [favorite]="favorite" />
     }
   </div>
 </section>

@@ -15,6 +15,7 @@ import { FavoritesStore } from '../store/favorites.store';
 import { FavoriteCardComponent } from '../components/favorite-card/favorite-card.component';
 import { FavoriteDialogComponent } from '../components/favorite-dialog/favorite-dialog.component';
 import { FavoritesSummaryComponent } from '../components/favorites-summary/favorites-summary.component';
+import { DeleteFavoriteCommand, Favorite } from '../models/favorite.model';
 
 @Component({
   selector: 'app-favorites-page',
@@ -52,7 +53,7 @@ export class FavoritesPageComponent {
     dialogRef.afterClosed().subscribe(async (result) => {
       if (!result) return;
 
-      await this.store.addFavorite({
+      await this.store.addLink({
         title: result.title,
         url: result.url,
         isFavorite: true,
@@ -60,8 +61,12 @@ export class FavoritesPageComponent {
     });
   }
 
-  async removeFavorite(id: string): Promise<void> {
-    await this.store.removeFavorite(id);
+  async addLink(payload: Favorite): Promise<void> {
+    await this.store.addLink(payload);
+  }
+
+  async removeLink(command: DeleteFavoriteCommand): Promise<void> {
+    await this.store.removeLink(command);
   }
 
   onSearch(value: string): void {

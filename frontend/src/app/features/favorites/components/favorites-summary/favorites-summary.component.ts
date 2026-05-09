@@ -12,9 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritesSummaryComponent {
+  // Input properties to receive summary data from the parent component
   title = input.required<string>();
-
   value = input.required<number>();
-
   icon = input.required<string>();
 }

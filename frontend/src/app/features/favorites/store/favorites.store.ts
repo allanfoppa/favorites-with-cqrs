@@ -8,7 +8,12 @@ import {
 } from '@ngrx/signals'; // For state management
 import { computed, inject } from '@angular/core';
 import { FavoriteService } from '../services/favorite.service';
-import { CreateFavoriteCommand, Favorite } from '../models/favorite.model';
+import {
+  CreateFavoriteCommand,
+  DeleteFavoriteCommand,
+  Favorite,
+  UpdateFavoriteCommand,
+} from '../models/favorite.model';
 
 export const FavoritesStore = signalStore(
   { providedIn: 'root' },
@@ -50,14 +55,42 @@ export const FavoritesStore = signalStore(
       const items = await service.getFavorites();
       patchState(store, { items, isLoading: false });
     },
-    async addFavorite(command: CreateFavoriteCommand): Promise<void> {
+    async addLink(command: CreateFavoriteCommand): Promise<void> {
       const newItem = await service.create(command);
       patchState(store, (state) => ({ items: [...state.items, newItem] }));
     },
-    async removeFavorite(id: string): Promise<void> {
-      await service.delete(id);
+    async removeLink(command: DeleteFavoriteCommand): Promise<void> {
+      await service.delete(command);
       patchState(store, (state) => ({
-        items: state.items.filter((item) => item.id !== id),
+        items: state.items.filter((item) => item.id !== command.id),
+      }));
+    },
+    async addFavorite(command: UpdateFavoriteCommand): Promise<void> {
+      await service.update(command);
+
+      patchState(store, (state) => ({
+        items: state.items.map((item) =>
+          item.id === command.id
+            ? {
+                ...item,
+                isFavorite: command.isFavorite ?? item.isFavorite,
+              }
+            : item,
+        ),
+      }));
+    },
+    async removeFavorite(command: UpdateFavoriteCommand): Promise<void> {
+      await service.update(command);
+
+      patchState(store, (state) => ({
+        items: state.items.map((item) =>
+          item.id === command.id
+            ? {
+                ...item,
+                isFavorite: command.isFavorite ?? item.isFavorite,
+              }
+            : item,
+        ),
       }));
     },
     updateFilter(text: string): void {

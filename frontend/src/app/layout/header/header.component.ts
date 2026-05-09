@@ -22,18 +22,8 @@ export class HeaderComponent {
   private readonly dialog = inject(MatDialog);
 
   openCreateDialog(): void {
-    const dialogRef = this.dialog.open(FavoriteDialogComponent, {
+    this.dialog.open(FavoriteDialogComponent, {
       width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe(async (result) => {
-      if (!result) return;
-
-      await this.store.addFavorite({
-        title: result.title,
-        url: result.url,
-        isFavorite: true,
-      });
     });
   }
 }
