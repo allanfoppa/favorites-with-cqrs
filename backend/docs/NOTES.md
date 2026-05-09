@@ -10,5 +10,3 @@
   - Preserve data consistency in the write model
 
 - Read model is eventually consistent by design (MongoDB projection)
-
-- Messaging (RabbitMQ) is considered unreliable and handled via Outbox pattern
